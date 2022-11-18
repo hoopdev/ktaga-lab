@@ -35,7 +35,9 @@ class PNAAxisParameter(Parameter):
         """
         Return the axis values, with values retrieved from the parent instrument
         """
-        return np.linspace(self._startparam(), self._stopparam(), self._pointsparam())
+        return np.linspace(
+            self._startparam(), self._stopparam(), self._pointsparam()
+        )
 
 
 class PNALogAxisParamter(PNAAxisParameter):
@@ -44,7 +46,9 @@ class PNALogAxisParamter(PNAAxisParameter):
         Return the axis values on a log scale, with values retrieved from
         the parent instrument
         """
-        return np.geomspace(self._startparam(), self._stopparam(), self._pointsparam())
+        return np.geomspace(
+            self._startparam(), self._stopparam(), self._pointsparam()
+        )
 
 
 class PNATimeAxisParameter(PNAAxisParameter):
@@ -54,6 +58,17 @@ class PNATimeAxisParameter(PNAAxisParameter):
         the parent instrument
         """
         return np.linspace(0, self._stopparam(), self._pointsparam())
+
+
+class PNATimeDomainAxisParameter(PNAAxisParameter):
+    def get_raw(self) -> np.ndarray:
+        """
+        Return the axis values on a time scale, with values retrieved from
+        the parent instrument
+        """
+        return np.linspace(
+            self._startparam(), self._stopparam(), self._pointsparam()
+        )
 
 
 class FormattedSweep(ParameterWithSetpoints):
@@ -72,7 +87,9 @@ class FormattedSweep(ParameterWithSetpoints):
         memory: bool = False,
         **kwargs: Any,
     ) -> None:
-        super().__init__(name, instrument=instrument, label=label, unit=unit, **kwargs)
+        super().__init__(
+            name, instrument=instrument, label=label, unit=unit, **kwargs
+        )
         self.sweep_format = sweep_format
         self.memory = memory
 
@@ -87,14 +104,19 @@ class FormattedSweep(ParameterWithSetpoints):
             )
         root_instrument: "PNABase" = self.root_instrument  # type: ignore[assignment]
         sweep_type = root_instrument.sweep_type()
-        if sweep_type == "LIN":
+        time_domain_enabled = root_instrument.time_domain_enabled()
+        if sweep_type == "LIN" and time_domain_enabled == 0:
             return (root_instrument.frequency_axis,)
+        elif sweep_type == "LIN" and time_domain_enabled == 1:
+            return (root_instrument.time_domain_axis,)
         elif sweep_type == "LOG":
             return (root_instrument.frequency_log_axis,)
         elif sweep_type == "CW":
             return (root_instrument.time_axis,)
         else:
-            raise NotImplementedError(f"Axis for type {sweep_type} not implemented yet")
+            raise NotImplementedError(
+                f"Axis for type {sweep_type} not implemented yet"
+            )
 
     @setpoints.setter
     def setpoints(self, val: Any) -> None:
@@ -162,7 +184,9 @@ class PNAPort(InstrumentChannel):
         """
         Set port power limits
         """
-        self.source_power.vals = Numbers(min_value=min_power, max_value=max_power)
+        self.source_power.vals = Numbers(
+            min_value=min_power, max_value=max_power
+        )
 
 
 class PNATrace(InstrumentChannel):
@@ -184,7 +208,10 @@ class PNATrace(InstrumentChannel):
 
         # Name of parameter (i.e. S11, S21 ...)
         self.add_parameter(
-            "trace", label="Trace", get_cmd=self._Sparam, set_cmd=self._set_Sparam
+            "trace",
+            label="Trace",
+            get_cmd=self._Sparam,
+            set_cmd=self._set_Sparam,
         )
         # Format
         # Note: Currently parameters that return complex values are not
@@ -211,7 +238,7 @@ class PNATrace(InstrumentChannel):
             "linear_magnitude",
             sweep_format="MLIN",
             label="Magnitude",
-            unit="ratio",
+            unit="",
             parameter_class=FormattedSweep,
             vals=Arrays(shape=(self.parent.points,)),
         )
@@ -243,7 +270,7 @@ class PNATrace(InstrumentChannel):
             "real",
             sweep_format="REAL",
             label="Real",
-            unit="LinMag",
+            unit="",
             parameter_class=FormattedSweep,
             vals=Arrays(shape=(self.parent.points,)),
         )
@@ -251,7 +278,7 @@ class PNATrace(InstrumentChannel):
             "imaginary",
             sweep_format="IMAG",
             label="Imaginary",
-            unit="LinMag",
+            unit="",
             parameter_class=FormattedSweep,
             vals=Arrays(shape=(self.parent.points,)),
         )
@@ -259,7 +286,7 @@ class PNATrace(InstrumentChannel):
             "polar",
             sweep_format="POLAR",
             label="Polar",
-            unit="V",
+            unit="",
             parameter_class=FormattedSweep,
             get_parser=self._parse_polar_data,
             vals=Arrays(shape=(self.parent.points,), valid_types=(complex,)),
@@ -359,8 +386,8 @@ class PNABase(VisaInstrument):
     Base qcodes driver for Agilent/Keysight series PNAs
     http://na.support.keysight.com/pna/help/latest/Programming/GP-IB_Command_Finder/SCPI_Command_Tree.htm
     Note: Currently this driver only expects a single channel on the PNA. We
-          can handle multiple traces, but using traces across multiple channels
-          may have unexpected results.
+        can handle multiple traces, but using traces across multiple channels
+        may have unexpected results.
     """
 
     def __init__(
@@ -392,7 +419,9 @@ class PNABase(VisaInstrument):
         # Ports
         ports = ChannelList(self, "PNAPorts", PNAPort)
         for port_num in range(1, nports + 1):
-            port = PNAPort(self, f"port{port_num}", port_num, min_power, max_power)
+            port = PNAPort(
+                self, f"port{port_num}", port_num, min_power, max_power
+            )
             ports.append(port)
             self.add_submodule(f"port{port_num}", port)
         self.add_submodule("ports", ports.to_channel_tuple())
@@ -542,6 +571,33 @@ class PNABase(VisaInstrument):
             vals=Numbers(min_value=0, max_value=10e-6),
         )
 
+        # Time domain
+        self.add_parameter(
+            "time_domain_enabled",
+            label="Time-domain Enabled",
+            get_cmd="CALC:TRAN:TIME:STAT?",
+            set_cmd="CALC:TRAN:TIME:STAT {}",
+            val_mapping={True: "1", False: "0"},
+        )
+        self.add_parameter(
+            "start_time",
+            label="Start Time",
+            get_cmd="CALC:TRAN:TIME:STAR?",
+            get_parser=float,
+            set_cmd="CALC:TRAN:TIME:STAR {}",
+            unit="s",
+            vals=Numbers(min_value=0, max_value=2.5e-6),
+        )
+        self.add_parameter(
+            "stop_time",
+            label="Stop Time",
+            get_cmd="CALC:TRAN:TIME:STOP?",
+            get_parser=float,
+            set_cmd="CALC:TRAN:TIME:STOP {}",
+            unit="s",
+            vals=Numbers(min_value=0, max_value=2.5e-6),
+        )
+
         # Sweep Time
         self.add_parameter(
             "sweep_time",
@@ -615,6 +671,16 @@ class PNABase(VisaInstrument):
             pointsparam=self.points,
             vals=Arrays(shape=(self.points,)),
         )
+        self.add_parameter(
+            "time_domain_axis",
+            unit="s",
+            label="Time",
+            parameter_class=PNATimeDomainAxisParameter,
+            startparam=self.start_time,
+            stopparam=self.stop_time,
+            pointsparam=self.points,
+            vals=Arrays(shape=(self.points,)),
+        )
 
         # Traces
         self.add_parameter(
@@ -634,7 +700,8 @@ class PNABase(VisaInstrument):
         params = trace1.parameters
         if not isinstance(params, dict):
             raise RuntimeError(
-                f"Expected trace.parameters to be a dict got " f"{type(params)}"
+                f"Expected trace.parameters to be a dict got "
+                f"{type(params)}"
             )
         for param in params.values():
             self.parameters[param.name] = param
@@ -699,6 +766,10 @@ class PNABase(VisaInstrument):
         # Query the instrument for what options are installed
         return self.ask("*OPT?").strip('"').split(",")
 
+    def preset(self) -> None:
+        self.write("SYST:FPRESET")
+        self.write("DISP:WIND:STATE ON")
+
     def get_trace_catalog(self) -> str:
         """
         Get the trace catalog, that is a list of trace and sweep types
@@ -716,6 +787,13 @@ class PNABase(VisaInstrument):
         """
         self.write(f"CALC:PAR:SEL '{trace_name}'")
         return self.active_trace()
+
+    def add_trace(self, trace_num: int, trace_meas: str) -> None:
+        """
+        Add a trace to the channel.
+        """
+        self.write(f"CALC:PAR:DEF:EXT 'Meas{trace_num}',{trace_meas}")
+        self.write(f"DISP:WIND:TRACe{trace_num}:FEED 'Meas{trace_num}'")
 
     def reset_averages(self) -> None:
         """
@@ -747,6 +825,18 @@ class PNABase(VisaInstrument):
         """
         self.gating_enabled(False)
 
+    def time_domain_on(self) -> None:
+        """
+        Turn on trace transform to time-domain
+        """
+        self.time_domain_enabled(True)
+
+    def time_domain_off(self) -> None:
+        """
+        Turn off trace transform to time-domain
+        """
+        self.time_domain_enabled(False)
+
     def _set_power_limits(
         self, min_power: Union[int, float], max_power: Union[int, float]
     ) -> None:
@@ -770,6 +860,7 @@ class P9375A(PNABase):
             nports=2,
             **kwargs,
         )
+
 
 class E8362B(PNABase):
     def __init__(self, name: str, address: str, **kwargs: Any):
