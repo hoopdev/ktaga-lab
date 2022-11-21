@@ -688,7 +688,8 @@ class PNABase(VisaInstrument):
             label="Active Trace",
             get_cmd="CALC:PAR:MNUM?",
             get_parser=int,
-            set_cmd="CALC:PAR:MNUM {}",
+            # set_cmd="CALC:PAR:MNUM {}",
+            set_cmd="CALC:PAR:SEL 'Meas{}'",
             vals=Numbers(min_value=1, max_value=24),
         )
         # Note: Traces will be accessed through the traces property which
