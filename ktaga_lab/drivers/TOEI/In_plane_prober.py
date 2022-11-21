@@ -69,7 +69,6 @@ class OutputField(Parameter):
         v_out = np.linspace(
             self._voltage, voltage, int(self.write_array_length)
         )
-        print(v_out)
         task.write(v_out, auto_start=True)
         task.wait_until_done()
         task.stop()
@@ -77,8 +76,6 @@ class OutputField(Parameter):
         self._voltage = voltage
         self._field = field
         time.sleep(0.1)
-        print(self._voltage)
-        print(self._field)
         return
 
     def get_raw(self):
