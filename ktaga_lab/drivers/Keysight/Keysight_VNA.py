@@ -837,6 +837,12 @@ class PNABase(VisaInstrument):
         """
         self.time_domain_enabled(False)
 
+    def autoscale(self) -> None:
+        """
+        Autoscale windows
+        """
+        self.write("DISP:WIND:Y:AUTO")
+
     def _set_power_limits(
         self, min_power: Union[int, float], max_power: Union[int, float]
     ) -> None:
