@@ -246,6 +246,43 @@ class Magnet(Instrument):
         }
 
 
+class Angle(Parameter):
+    """Measured magnetic field by reading voltage value to daq
+    Args:
+        name: Name of parameter.
+        instrument: AngleDriver class.
+        kwargs: Keyword arguments to be passed to ArrayParameter constructor.
+    """
+
+    def __init__(
+        self,
+        name: str,
+        instrument: "AngleDriver",
+        **kwargs,
+    ) -> None:
+        super().__init__(name, instrument=instrument, **kwargs)
+
+    def set_raw(self, angle: float) -> None:
+        """Sets magnetic field angle"""
+        position = int(
+            angle * self.instrument.root_instrument.angle_length_ratio
+        )
+        self.instrument.root_instrument.write(f"FP{position}")
+        while True:
+            motor_status = self.instrument.root_instrument.ask("RS")
+            if motor_status == "R":
+                break
+            elif motor_status == "FMR":
+                time.sleep(1)
+
+    def get_raw(self) -> float:
+        """Returns magnetic field angle"""
+        position = self.instrument.root_instrument.ask("IP")
+        position = float(position)
+        angle = position / self.instrument.root_instrument.angle_length_ratio
+        return angle
+
+
 class AngleDriver(Instrument):
     """
     Driver for the motor which rotates the magnet
@@ -255,18 +292,32 @@ class AngleDriver(Instrument):
         self,
         name: str,
         com_port: str,
+        baudrate: int = 9600,
         acceleration: int = 0.1,
         deceleration: int = 0.1,
         velocity: int = 0.1,
         step_resolution: int = 20000,
-        angle_length_ratio: float = 11360 / 90,
+        angle_length_ratio: float = 22450 / 90,
         **kwargs,
     ) -> None:
 
+        super().__init__(name=name, **kwargs)
+        self.angle_length_ratio = angle_length_ratio
+        self.metadata.update(
+            {
+                "com_port": com_port,
+                "baudrate": baudrate,
+                "acceleration": acceleration,
+                "deceleration": deceleration,
+                "velocity": velocity,
+                "step_resolution": step_resolution,
+                "angle_length_ratio": angle_length_ratio,
+            }
+        )
         try:
             self.ser = serial.Serial()
-            self.ser.port = self.port
-            self.ser.baudrate = self.baudrate
+            self.ser.port = com_port
+            self.ser.baudrate = baudrate
             self.ser.bytesize = serial.EIGHTBITS
             self.ser.parity = serial.PARITY_NONE
             self.ser.stopbits = serial.STOPBITS_ONE
@@ -280,6 +331,7 @@ class AngleDriver(Instrument):
             time.sleep(1)
         except Exception as e:
             print("Error opening serial port")
+            print(e)
             exit()
 
         if self.ser.isOpen():
@@ -287,16 +339,16 @@ class AngleDriver(Instrument):
                 self.ser.flushInput()
                 self.ser.flushOutput()
                 self.write(
-                    f"EG{self.step_resolution}"
+                    f"EG{step_resolution}"
                 )  # Sets microstepping to 20,000 steps per revolution
                 self.write(
                     "IFD"
                 )  # Sets the format of drive responses to decimal
                 self.write("SP0")  # Sets the starting position at 0
                 self.write("AR")  # Alarm reset
-                self.write(f"AC{self.acceleration}")  # Acceleration
-                self.write(f"DE{self.deceleration}")  # Deceleration
-                self.write(f"VE{self.velocity}")  # Velocity
+                self.write(f"AC{acceleration}")  # Acceleration
+                self.write(f"DE{deceleration}")  # Deceleration
+                self.write(f"VE{velocity}")  # Velocity
                 self.write("ME")  # Enable Motor
             except Exception as e1:
                 print("Error Communicating...: " + str(e1))
@@ -324,49 +376,17 @@ class AngleDriver(Instrument):
         self.ser.write((cmd + "\r").encode())
         response = self.ser.read(15).decode()
         if len(response) > 0:
-            # print(response)
             self.ser.flushInput()
 
     def ask(self, cmd: str) -> Any:
         self.ser.write((cmd + "\r").encode())
         response = self.ser.read(15).decode()
-        res_value = response
         if len(response) > 0:
-            # print(response)
+            res_value = str.strip(response)[3:]
             self.ser.flushInput()
         return res_value
 
     def homing(self, current_angle) -> None:
-        home_position = (
-            -current_angle * self.root_instrument.angle_length_ratio
-        )
+        home_position = int(-current_angle * self.angle_length_ratio)
         self.write(f"FP{home_position}")
         self.write("SP0")  # Sets the starting position at 0
-
-
-class Angle(Parameter):
-    """Measured magnetic field by reading voltage value to daq
-    Args:
-        name: Name of parameter.
-        ser: Serial channel
-        kwargs: Keyword arguments to be passed to ArrayParameter constructor.
-    """
-
-    def __init__(
-        self,
-        name: str,
-        instrument: "AngleDriver",
-        **kwargs,
-    ) -> None:
-        super().__init__(name, instrument=instrument, **kwargs)
-
-    def set_raw(self, angle: float) -> None:
-        """Sets magnetic field angle"""
-        position = angle * self.root_instrument.angle_length_ratio
-        self.root_instrument.write(f"FP{position}")
-
-    def get_raw(self) -> float:
-        """Returns magnetic field angle"""
-        position = self.root_instrument.ask("IP")
-        angle = position / self.root_instrument.angle_length_ratio
-        return angle
