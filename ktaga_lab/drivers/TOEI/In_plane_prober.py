@@ -255,11 +255,11 @@ class AngleDriver(Instrument):
         self,
         name: str,
         com_port: str,
-        acceleration: int,
-        deceleration: int,
-        velocity: int,
+        acceleration: int = 0.1,
+        deceleration: int = 0.1,
+        velocity: int = 0.1,
         step_resolution: int = 20000,
-        angle_length_ratio: float,
+        angle_length_ratio: float = 11360 / 90,
         **kwargs,
     ) -> None:
 
@@ -289,7 +289,9 @@ class AngleDriver(Instrument):
                 self.write(
                     f"EG{self.step_resolution}"
                 )  # Sets microstepping to 20,000 steps per revolution
-                self.write("IFD")  # Sets the format of drive responses to decimal
+                self.write(
+                    "IFD"
+                )  # Sets the format of drive responses to decimal
                 self.write("SP0")  # Sets the starting position at 0
                 self.write("AR")  # Alarm reset
                 self.write(f"AC{self.acceleration}")  # Acceleration
@@ -334,11 +336,12 @@ class AngleDriver(Instrument):
             self.ser.flushInput()
         return res_value
 
-    def homing(self,current_angle) -> None:
-        home_position = -current_angle * self.root_instrument.angle_length_ratio
+    def homing(self, current_angle) -> None:
+        home_position = (
+            -current_angle * self.root_instrument.angle_length_ratio
+        )
         self.write(f"FP{home_position}")
         self.write("SP0")  # Sets the starting position at 0
-
 
 
 class Angle(Parameter):
