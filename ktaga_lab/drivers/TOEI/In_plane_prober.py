@@ -1,7 +1,9 @@
 import time
+from typing import Any
 
 import nidaqmx
 import numpy as np
+import serial
 from qcodes.instrument.base import Instrument
 from qcodes.instrument.parameter import Parameter
 from qcodes.validators import Arrays, Bool, Enum, Ints, Numbers
@@ -242,3 +244,126 @@ class Magnet(Instrument):
             "serial": None,
             "firmware": None,
         }
+
+
+class AngleDriver(Instrument):
+    """
+    Driver for the motor which rotates the magnet
+    """
+
+    def __init__(
+        self,
+        name: str,
+        com_port: str,
+        acceleration: int,
+        deceleration: int,
+        velocity: int,
+        step_resolution: int = 20000,
+        angle_length_ratio: float,
+        **kwargs,
+    ) -> None:
+
+        try:
+            self.ser = serial.Serial()
+            self.ser.port = self.port
+            self.ser.baudrate = self.baudrate
+            self.ser.bytesize = serial.EIGHTBITS
+            self.ser.parity = serial.PARITY_NONE
+            self.ser.stopbits = serial.STOPBITS_ONE
+            self.ser.timeout = 0.1
+            self.ser.xonxoff = False
+            self.ser.rtscts = False
+            self.ser.dsrdtr = False
+            self.ser.writeTimeout = 0
+
+            self.ser.open()
+            time.sleep(1)
+        except Exception as e:
+            print("Error opening serial port")
+            exit()
+
+        if self.ser.isOpen():
+            try:
+                self.ser.flushInput()
+                self.ser.flushOutput()
+                self.write(
+                    f"EG{self.step_resolution}"
+                )  # Sets microstepping to 20,000 steps per revolution
+                self.write("IFD")  # Sets the format of drive responses to decimal
+                self.write("SP0")  # Sets the starting position at 0
+                self.write("AR")  # Alarm reset
+                self.write(f"AC{self.acceleration}")  # Acceleration
+                self.write(f"DE{self.deceleration}")  # Deceleration
+                self.write(f"VE{self.velocity}")  # Velocity
+                self.write("ME")  # Enable Motor
+            except Exception as e1:
+                print("Error Communicating...: " + str(e1))
+        else:
+            print("Cannot open serial port ")
+
+        self.add_parameter(
+            name="angle",
+            parameter_class=Angle,
+            label="Magnetic field angle",
+            unit="degree",
+        )
+
+        self.connect_message()
+
+    def get_idn(self):
+        return {
+            "vendor": "Applied Motion",
+            "model": "ST5-SI",
+            "serial": None,
+            "firmware": None,
+        }
+
+    def write(self, cmd: str) -> None:
+        self.ser.write((cmd + "\r").encode())
+        response = self.ser.read(15).decode()
+        if len(response) > 0:
+            # print(response)
+            self.ser.flushInput()
+
+    def ask(self, cmd: str) -> Any:
+        self.ser.write((cmd + "\r").encode())
+        response = self.ser.read(15).decode()
+        res_value = response
+        if len(response) > 0:
+            # print(response)
+            self.ser.flushInput()
+        return res_value
+
+    def homing(self,current_angle) -> None:
+        home_position = -current_angle * self.root_instrument.angle_length_ratio
+        self.write(f"FP{home_position}")
+        self.write("SP0")  # Sets the starting position at 0
+
+
+
+class Angle(Parameter):
+    """Measured magnetic field by reading voltage value to daq
+    Args:
+        name: Name of parameter.
+        ser: Serial channel
+        kwargs: Keyword arguments to be passed to ArrayParameter constructor.
+    """
+
+    def __init__(
+        self,
+        name: str,
+        instrument: "AngleDriver",
+        **kwargs,
+    ) -> None:
+        super().__init__(name, instrument=instrument, **kwargs)
+
+    def set_raw(self, angle: float) -> None:
+        """Sets magnetic field angle"""
+        position = angle * self.root_instrument.angle_length_ratio
+        self.root_instrument.write(f"FP{position}")
+
+    def get_raw(self) -> float:
+        """Returns magnetic field angle"""
+        position = self.root_instrument.ask("IP")
+        angle = position / self.root_instrument.angle_length_ratio
+        return angle
