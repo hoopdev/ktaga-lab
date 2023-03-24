@@ -384,6 +384,8 @@ class AngleDriver(Instrument):
         if len(response) > 0:
             res_value = str.strip(response)[3:]
             self.ser.flushInput()
+        else:
+            res_value = None
         return res_value
 
     def homing(self, current_angle) -> None:
