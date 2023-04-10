@@ -71,7 +71,9 @@ class CCWSoftLimitEnable(Parameter):
 
 
 class CCWSoftLimitPoint(Parameter):
-    """Sets the CCW soft limit point"""
+    """
+    Sets the CCW soft limit point.
+    """
 
     def __init__(
         self, name: str, instrument: "MotorDriver", axis: int, **kwargs
@@ -91,9 +93,10 @@ class DriverDivision(Parameter):
     Args:
         name: Name of the parameter.
         instrument: The instrument object.
+        **kwargs: Keyword arguments to be passed to the Parameter constructor.
     """
 
-    def __init__(self, name: str, instrument: "MotorDriver"):
+    def __init__(self, name: str, instrument: "MotorDriver", **kwargs):
         super().__init__(name, instrument)
 
     def set_raw(self, value: int):
@@ -113,9 +116,10 @@ class Data(Parameter):
     Args:
         name: Name of the parameter.
         instrument: The instrument object.
+        **kwargs: Keyword arguments to be passed to the Parameter constructor.
     """
 
-    def __init__(self, name: str, instrument: "MotorDriver"):
+    def __init__(self, name: str, instrument: "MotorDriver", **kwargs):
         super().__init__(name, instrument)
 
     def set_raw(self, value: int):
@@ -135,9 +139,10 @@ class HomePosition(Parameter):
     Args:
         name: Name of the parameter.
         instrument: The instrument object.
+        **kwargs: Keyword arguments to be passed to the Parameter constructor.
     """
 
-    def __init__(self, name: str, instrument: "MotorDriver"):
+    def __init__(self, name: str, instrument: "MotorDriver", **kwargs):
         super().__init__(name, instrument)
 
     def set_raw(self, value: float):
@@ -159,9 +164,10 @@ class Position(Parameter):
     Args:
         name: Name of the parameter.
         instrument: The instrument object.
+        **kwargs: Keyword arguments to be passed to the Parameter constructor.
     """
 
-    def __init__(self, name: str, instrument: "MotorDriver"):
+    def __init__(self, name: str, instrument: "MotorDriver", **kwargs):
         super().__init__(name, instrument)
 
     def set_raw(self, value: float):
@@ -180,7 +186,6 @@ class Position(Parameter):
 
 class Pulse(Parameter):
     """Class for setting the constant pulse movement amount.
-
     Args:
         name (str): The name of the parameter.
         instrument (MotorDriver): The instance of the parent MotorDriver instrument.
@@ -201,7 +206,6 @@ class Pulse(Parameter):
 
 class PulseA(Parameter):
     """Class for setting the absolute position of the motor.
-
     Args:
         name (str): The name of the parameter.
         instrument (MotorDriver): The instance of the parent MotorDriver instrument.
@@ -222,7 +226,6 @@ class PulseA(Parameter):
 
 class SelectSpeed(Parameter):
     """Class for setting the speed table of the motor.
-
     Args:
         name (str): The name of the parameter.
         instrument (MotorDriver): The instance of the parent MotorDriver instrument.
@@ -243,7 +246,6 @@ class SelectSpeed(Parameter):
 
 class StandardResolution(Parameter):
     """Class for setting the pulse distance for full step.
-
     Args:
         name (str): The name of the parameter.
         instrument (MotorDriver): The instance of the parent MotorDriver instrument.
@@ -293,7 +295,7 @@ class Unit(Parameter):
 
 class MotorDriver(Instrument):
     """
-    Driver for controlling a motor step-by-step
+    DS102 Driver for controlling a motor
     """
 
     def __init__(
