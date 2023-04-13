@@ -1803,6 +1803,21 @@ files = [
 jupyterlab = ">=3.0,<4.0"
 
 [[package]]
+name = "jupyterlab-drawio"
+version = "0.9.0"
+description = "A JupyterLab extension for embedding drawio / mxgraph."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "jupyterlab-drawio-0.9.0.tar.gz", hash = "sha256:972cf2007ee654d97a836a1fa4c32c0eed9955db84c576ea7d9e52e5c62cc626"},
+    {file = "jupyterlab_drawio-0.9.0-py3-none-any.whl", hash = "sha256:51d481a6366537a0eafb514ecdec1ba384d7930d3a285df8878150780d02d93b"},
+]
+
+[package.dependencies]
+jupyterlab = ">=3.0.0,<4.0.0"
+
+[[package]]
 name = "jupyterlab-lsp"
 version = "3.10.2"
 description = "Coding assistance for JupyterLab with Language Server Protocol"
@@ -1855,6 +1870,37 @@ requests = ">=2.28"
 docs = ["autodoc-traits", "docutils (<0.20)", "jinja2 (<3.2.0)", "mistune (<3)", "myst-parser", "pydata-sphinx-theme", "sphinx", "sphinx-copybutton", "sphinxcontrib-openapi"]
 openapi = ["openapi-core (>=0.16.1,<0.17.0)", "ruamel-yaml"]
 test = ["codecov", "hatch", "ipykernel", "jupyterlab-server[openapi]", "openapi-spec-validator (>=0.5.1,<0.6.0)", "pytest (>=7.0)", "pytest-console-scripts", "pytest-cov", "pytest-jupyter[server] (>=0.6.2)", "pytest-timeout", "requests-mock", "sphinxcontrib-spelling", "strict-rfc3339", "werkzeug"]
+
+[[package]]
+name = "jupyterlab-templates"
+version = "0.4.0"
+description = "notebook templates for jupyterlab"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "jupyterlab_templates-0.4.0-py3-none-any.whl", hash = "sha256:8eb042b85777df6b78683fa351a0a32e2c1eab475a8a7993d81888218cc61256"},
+    {file = "jupyterlab_templates-0.4.0.tar.gz", hash = "sha256:e9fc514791a648835aaa9cce3a7bdef387280929cd0959859980ad074c6569b6"},
+]
+
+[package.dependencies]
+jupyterlab = ">=3.5"
+
+[package.extras]
+develop = ["black (>=23)", "check-manifest", "pytest", "pytest-cov", "ruff"]
+test = ["pytest", "pytest-cov"]
+
+[[package]]
+name = "jupyterlab-theme-solarized-dark"
+version = "2.1.0"
+description = "JupyterLab 2/3 Solarized Dark extension."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "jupyterlab_theme_solarized_dark-2.1.0-py3-none-any.whl", hash = "sha256:e7f8e8a2d1f403d6fb2f6edae402727e876e8f0f9b6aff0acb767e1ead6996fd"},
+    {file = "jupyterlab_theme_solarized_dark-2.1.0.tar.gz", hash = "sha256:b7d6f7ebde6cc2c55097478446a0075c3238d0a9dffe67f61cdadfe32e0f2de4"},
+]
 
 [[package]]
 name = "jupyterlab-vim"
@@ -4784,4 +4830,4 @@ zurich = ["zhinst"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "8db04bced3abf45ec9d8bbfc9024d017bc627313a64a79cd5a9e387f77bc2ff6"
+content-hash = "d298a411d10ebf878b4446f38e7ae6392e90ef25740a1e89041feba45f5e266e"
