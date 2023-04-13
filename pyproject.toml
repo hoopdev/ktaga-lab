@@ -30,7 +30,6 @@ jupyterlab-lsp = "^3.10.2"
 jupyterlab-code-formatter = "^1.5.3"
 black = "^22.10.0"
 isort = "^5.10.1"
-jupyterlab-git = "^0.39.3"
 hvplot = "^0.8.1"
 holoviews = {extras = ["recommended"], version = "^1.15.1"}
 pyserial = "^3.5"

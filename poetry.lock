@@ -1073,36 +1073,6 @@ files = [
 ]
 
 [[package]]
-name = "gitdb"
-version = "4.0.10"
-description = "Git Object Database"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "gitdb-4.0.10-py3-none-any.whl", hash = "sha256:c286cf298426064079ed96a9e4a9d39e7f3e9bf15ba60701e95f5492f28415c7"},
-    {file = "gitdb-4.0.10.tar.gz", hash = "sha256:6eb990b69df4e15bad899ea868dc46572c3f75339735663b81de79b06f17eb9a"},
-]
-
-[package.dependencies]
-smmap = ">=3.0.1,<6"
-
-[[package]]
-name = "gitpython"
-version = "3.1.31"
-description = "GitPython is a Python library used to interact with Git repositories"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "GitPython-3.1.31-py3-none-any.whl", hash = "sha256:f04893614f6aa713a60cbbe1e6a97403ef633103cdd0ef5eb6efe0deb98dbe8d"},
-    {file = "GitPython-3.1.31.tar.gz", hash = "sha256:8ce3bcf69adfdf7c7d503e78fd3b1c492af782d58893b650adb2ac8912ddd573"},
-]
-
-[package.dependencies]
-gitdb = ">=4.0.1,<5"
-
-[[package]]
 name = "google-api-core"
 version = "2.11.0"
 description = "Google API client core library"
@@ -1730,24 +1700,6 @@ cli = ["click"]
 test = ["jupyter-server[test] (>=1.15,<3)", "pytest", "pytest-cov"]
 
 [[package]]
-name = "jupyter-server-mathjax"
-version = "0.2.6"
-description = "MathJax resources as a Jupyter Server Extension."
-category = "main"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "jupyter_server_mathjax-0.2.6-py3-none-any.whl", hash = "sha256:416389dde2010df46d5fbbb7adb087a5607111070af65a1445391040f2babb5e"},
-    {file = "jupyter_server_mathjax-0.2.6.tar.gz", hash = "sha256:bb1e6b6dc0686c1fe386a22b5886163db548893a99c2810c36399e9c4ca23943"},
-]
-
-[package.dependencies]
-jupyter-server = ">=1.1"
-
-[package.extras]
-test = ["jupyter-server[test]", "pytest"]
-
-[[package]]
 name = "jupyter-server-terminals"
 version = "0.4.4"
 description = "A Jupyter Server Extension Providing Terminals."
@@ -1849,30 +1801,6 @@ files = [
 
 [package.dependencies]
 jupyterlab = ">=3.0,<4.0"
-
-[[package]]
-name = "jupyterlab-git"
-version = "0.39.3"
-description = "A JupyterLab extension for version control using git"
-category = "main"
-optional = false
-python-versions = "<4,>=3.6"
-files = [
-    {file = "jupyterlab_git-0.39.3-py3-none-any.whl", hash = "sha256:56da3a2cf08f25b738c8442628bf497d23f59fd4b29daad147e48979d75f4b7e"},
-    {file = "jupyterlab_git-0.39.3.tar.gz", hash = "sha256:72e9fb3bfa52bd8d8055b0919ae6730569caa7dcd22c2cbcb94d70aad3f847f9"},
-]
-
-[package.dependencies]
-jupyter-server = "*"
-nbdime = ">=3.1,<4.0"
-nbformat = "*"
-packaging = "*"
-pexpect = "*"
-traitlets = ">=5.0,<6.0"
-
-[package.extras]
-dev = ["black", "coverage", "jupyter-packaging (>=0.7.9,<0.8.0)", "jupyterlab (>=3.0,<4.0)", "pre-commit", "pytest", "pytest-asyncio", "pytest-cov", "pytest-tornasync"]
-tests = ["black", "coverage", "hybridcontents", "jupyter-archive", "jupyter-packaging (>=0.7.9,<0.8.0)", "jupyterlab (>=3.0,<4.0)", "jupytext", "pre-commit", "pytest", "pytest-asyncio", "pytest-cov", "pytest-tornasync"]
 
 [[package]]
 name = "jupyterlab-lsp"
@@ -2438,33 +2366,6 @@ qtpng = ["pyqtwebengine (>=5.15)"]
 serve = ["tornado (>=6.1)"]
 test = ["ipykernel", "ipywidgets (>=7)", "pre-commit", "pytest", "pytest-dependency"]
 webpdf = ["pyppeteer (>=1,<1.1)"]
-
-[[package]]
-name = "nbdime"
-version = "3.1.1"
-description = "Diff and merge of Jupyter Notebooks"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "nbdime-3.1.1-py2.py3-none-any.whl", hash = "sha256:ea4ddf919e3035800ef8bd5552b814522207cb154ca7512565e4539a54c74dbf"},
-    {file = "nbdime-3.1.1.tar.gz", hash = "sha256:67767320e971374f701a175aa59abd3a554723039d39fae908e72d16330d648b"},
-]
-
-[package.dependencies]
-colorama = "*"
-GitPython = "<2.1.4 || >2.1.4,<2.1.5 || >2.1.5,<2.1.6 || >2.1.6"
-jinja2 = ">=2.9"
-jupyter-server = "*"
-jupyter-server-mathjax = ">=0.2.2"
-nbformat = "*"
-pygments = "*"
-requests = "*"
-tornado = "*"
-
-[package.extras]
-docs = ["recommonmark", "sphinx", "sphinx-rtd-theme"]
-test = ["jsonschema", "jupyter-server[test]", "mock", "notebook", "pytest (>=3.6)", "pytest-cov", "pytest-timeout", "pytest-tornado", "requests", "tabulate"]
 
 [[package]]
 name = "nbformat"
@@ -4010,18 +3911,6 @@ files = [
 ]
 
 [[package]]
-name = "smmap"
-version = "5.0.0"
-description = "A pure Python implementation of a sliding window memory map manager"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "smmap-5.0.0-py3-none-any.whl", hash = "sha256:2aba19d6a040e78d8b09de5c57e96207b09ed71d8e55ce0959eeee6c8e190d94"},
-    {file = "smmap-5.0.0.tar.gz", hash = "sha256:c840e62059cd3be204b0c9c9f74be2c09d5648eddd4580d9314c3ecde0b30936"},
-]
-
-[[package]]
 name = "sniffio"
 version = "1.3.0"
 description = "Sniff out which async library your code is running under"
@@ -4895,4 +4784,4 @@ zurich = ["zhinst"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "91a6451216120bc2177ab516f013262cec1ffdd369862eadb477a7d7e8331695"
+content-hash = "8db04bced3abf45ec9d8bbfc9024d017bc627313a64a79cd5a9e387f77bc2ff6"
