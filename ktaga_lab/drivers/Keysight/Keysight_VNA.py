@@ -880,3 +880,17 @@ class E8362B(PNABase):
             nports=2,
             **kwargs,
         )
+
+
+class N5224A(PNABase):
+    def __init__(self, name: str, address: str, **kwargs: Any):
+        super().__init__(
+            name,
+            address,
+            min_freq=10e6,
+            max_freq=43.5e9,
+            min_power=-30,
+            max_power=13,  # 13 dBm up to 35 GHz
+            nports=2,
+            **kwargs,
+        )
