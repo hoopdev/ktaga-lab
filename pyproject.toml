@@ -34,6 +34,9 @@ hvplot = "^0.8.1"
 holoviews = {extras = ["recommended"], version = "^1.15.1"}
 pyserial = "^3.5"
 scikit-rf = "^0.26.0"
+jupyterlab-templates = "^0.4.0"
+jupyterlab-theme-solarized-dark = "^2.1.0"
+jupyterlab-drawio = "^0.9.0"
 
 [tool.poetry.extras]
 jupyterlab-tools = ["jupyterlab-vim","jupyterlab-vimrc"]
