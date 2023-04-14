@@ -1069,26 +1069,6 @@ class PNABaseMinimum(VisaInstrument):
             pointsparam=self.points,
             vals=Arrays(shape=(self.points,)),
         )
-        self.add_parameter(
-            "time_axis",
-            unit="s",
-            label="Time",
-            parameter_class=PNATimeAxisParameter,
-            startparam=None,
-            stopparam=self.sweep_time,
-            pointsparam=self.points,
-            vals=Arrays(shape=(self.points,)),
-        )
-        self.add_parameter(
-            "time_domain_axis",
-            unit="s",
-            label="Time",
-            parameter_class=PNATimeDomainAxisParameter,
-            startparam=self.start_time,
-            stopparam=self.stop_time,
-            pointsparam=self.points,
-            vals=Arrays(shape=(self.points,)),
-        )
 
         # Traces
         self.add_parameter(
