@@ -854,7 +854,7 @@ class PNABase(VisaInstrument):
             port._set_power_limits(min_power, max_power)
 
 
-class PNABaseMinimum(VisaInstrument):
+class PNABaseN52xx(VisaInstrument):
     """
     Base qcodes driver for Agilent/Keysight series PNAs
     http://na.support.keysight.com/pna/help/latest/Programming/GP-IB_Command_Finder/SCPI_Command_Tree.htm
@@ -1076,7 +1076,7 @@ class PNABaseMinimum(VisaInstrument):
             label="Active Trace",
             get_cmd="CALC:PAR:MNUM?",
             get_parser=int,
-            set_cmd="CALC:PAR:SEL 'Meas{}'",
+            set_cmd="CALC:PAR:MNUM {}",
             vals=Numbers(min_value=1, max_value=24),
         )
         # Note: Traces will be accessed through the traces property which
