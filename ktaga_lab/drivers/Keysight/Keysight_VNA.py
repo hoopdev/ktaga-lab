@@ -1246,7 +1246,7 @@ class E8362B(PNABase):
         )
 
 
-class N5224A(PNABaseMinimum):
+class N5224A(PNABaseN52xx):
     def __init__(self, name: str, address: str, **kwargs: Any):
         super().__init__(
             name,
