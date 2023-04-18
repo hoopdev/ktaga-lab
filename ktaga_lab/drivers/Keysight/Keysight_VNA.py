@@ -104,7 +104,10 @@ class FormattedSweep(ParameterWithSetpoints):
             )
         root_instrument: "PNABase" = self.root_instrument  # type: ignore[assignment]
         sweep_type = root_instrument.sweep_type()
-        time_domain_enabled = root_instrument.time_domain_enabled()
+        try:
+            time_domain_enabled = root_instrument.time_domain_enabled()
+        except:
+            time_domain_enabled = 0
         if sweep_type == "LIN" and time_domain_enabled == 0:
             return (root_instrument.frequency_axis,)
         elif sweep_type == "LIN" and time_domain_enabled == 1:
