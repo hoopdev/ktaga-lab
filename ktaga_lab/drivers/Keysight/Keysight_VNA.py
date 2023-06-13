@@ -513,7 +513,7 @@ class PNABase(VisaInstrument):
             get_parser=float,
             set_cmd="SENS:FREQ:SPAN {}",
             unit="Hz",
-            vals=Numbers(min_value=min_freq, max_value=max_freq),
+            vals=Numbers(min_value=0, max_value=max_freq),
         )
         self.add_parameter(
             "cw",
@@ -986,7 +986,7 @@ class PNABaseN52xx(VisaInstrument):
             get_parser=float,
             set_cmd="SENS:FREQ:SPAN {}",
             unit="Hz",
-            vals=Numbers(min_value=min_freq, max_value=max_freq),
+            vals=Numbers(min_value=0, max_value=max_freq),
         )
         self.add_parameter(
             "cw",
