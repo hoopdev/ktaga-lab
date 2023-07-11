@@ -25,7 +25,7 @@ def hv2plotly(plot, layout=None, trace_info=None, renderer="jupyterlab"):
     if layout is not None:
         fig.update_layout(layout)
     if trace_info is not None:
-        fig.update_trace(trace_info)
+        fig.update_traces(trace_info)
     if renderer is not None:
         fig.show(renderer=renderer)
     return fig
