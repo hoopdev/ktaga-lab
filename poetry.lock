@@ -1884,15 +1884,18 @@ files = [
 
 [[package]]
 name = "jupyterlab-vim"
-version = "0.15.1"
+version = "4.0.2"
 description = "Code cell vim bindings"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.8"
 files = [
-    {file = "jupyterlab_vim-0.15.1-py3-none-any.whl", hash = "sha256:e3ea4a0f140bb2956fa7c3b75442121cce264930fb94f06e5b0f75ccae2bde2e"},
-    {file = "jupyterlab_vim-0.15.1.tar.gz", hash = "sha256:c4282beb4a67d21f7126e32cda19f99ed324a1d3fc494560e393fe53f7519a74"},
+    {file = "jupyterlab_vim-4.0.2-py3-none-any.whl", hash = "sha256:3731106f067a50933fd694999dca288cff6a51b455fd75cb51b9d52d4980694d"},
+    {file = "jupyterlab_vim-4.0.2.tar.gz", hash = "sha256:b9b371d1abff313edc0f9f00c4633cc33cd81f5a60645358c36564b2ff5f81b1"},
 ]
+
+[package.dependencies]
+jupyterlab = ">=4.0.0,<5"
 
 [[package]]
 name = "jupyterlab-widgets"
@@ -4867,4 +4870,4 @@ zurich = ["zhinst"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "2a63b16a4f3d9e8a0d8dfda392895e2024a6a0a52ede049d3013a33c8a9e3fa5"
+content-hash = "be19e796c412a5207a56ff72077b39d045737508ff24f9b8d259edb21e646383"
