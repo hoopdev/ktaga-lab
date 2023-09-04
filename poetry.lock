@@ -1430,39 +1430,26 @@ test = ["pytest (<7.1)", "pytest-asyncio", "testpath"]
 test-extra = ["curio", "matplotlib (!=3.2.0)", "nbformat", "numpy (>=1.21)", "pandas", "pytest (<7.1)", "pytest-asyncio", "testpath", "trio"]
 
 [[package]]
-name = "ipython-genutils"
-version = "0.2.0"
-description = "Vestigial utilities from IPython"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "ipython_genutils-0.2.0-py2.py3-none-any.whl", hash = "sha256:72dd37233799e619666c9f639a9da83c34013a73e8bbc79a7a6348d93c61fab8"},
-    {file = "ipython_genutils-0.2.0.tar.gz", hash = "sha256:eb2e116e75ecef9d4d228fdc66af54269afa26ab4463042e33785b887c628ba8"},
-]
-
-[[package]]
 name = "ipywidgets"
-version = "7.7.2"
-description = "IPython HTML widgets for Jupyter"
+version = "8.1.0"
+description = "Jupyter interactive widgets"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.7"
 files = [
-    {file = "ipywidgets-7.7.2-py2.py3-none-any.whl", hash = "sha256:3d47a7826cc6e2644d7cb90db26699451f8b42379cf63b761431b63d19984ca2"},
-    {file = "ipywidgets-7.7.2.tar.gz", hash = "sha256:449ab8e7872d0f388ee5c5b3666b9d6af5e5618a5749fd62652680be37dff2af"},
+    {file = "ipywidgets-8.1.0-py3-none-any.whl", hash = "sha256:6c8396cc7b8c95dfb4e9ab0054f48c002f045e7e5d7ae523f559d64e525a98ab"},
+    {file = "ipywidgets-8.1.0.tar.gz", hash = "sha256:ce97dd90525b3066fd00094690964e7eac14cf9b7745d35565b5eeac20cce687"},
 ]
 
 [package.dependencies]
-ipykernel = ">=4.5.1"
-ipython = {version = ">=4.0.0", markers = "python_version >= \"3.3\""}
-ipython-genutils = ">=0.2.0,<0.3.0"
-jupyterlab-widgets = {version = ">=1.0.0,<3", markers = "python_version >= \"3.6\""}
+comm = ">=0.1.3"
+ipython = ">=6.1.0"
+jupyterlab-widgets = ">=3.0.7,<3.1.0"
 traitlets = ">=4.3.1"
-widgetsnbextension = ">=3.6.0,<3.7.0"
+widgetsnbextension = ">=4.0.7,<4.1.0"
 
 [package.extras]
-test = ["mock", "pytest (>=3.6.0)", "pytest-cov"]
+test = ["ipykernel", "jsonschema", "pytest (>=3.6.0)", "pytest-cov", "pytz"]
 
 [[package]]
 name = "isoduration"
@@ -1915,14 +1902,14 @@ jupyterlab = ">=4.0.0,<5"
 
 [[package]]
 name = "jupyterlab-widgets"
-version = "1.1.5"
-description = "A JupyterLab extension."
+version = "3.0.8"
+description = "Jupyter interactive widgets for JupyterLab"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "jupyterlab_widgets-1.1.5-py3-none-any.whl", hash = "sha256:7bc9a5642f6741945e873183695c28b02665a7f075aa36f7cca8b52ab984e581"},
-    {file = "jupyterlab_widgets-1.1.5.tar.gz", hash = "sha256:18565a93d88ade31cc69307ebd47edf6be774bc4772c1bf1a688d807f464e2a1"},
+    {file = "jupyterlab_widgets-3.0.8-py3-none-any.whl", hash = "sha256:4715912d6ceab839c9db35953c764b3214ebbc9161c809f6e0510168845dfdf5"},
+    {file = "jupyterlab_widgets-3.0.8.tar.gz", hash = "sha256:d428ab97b8d87cc7c54cbf37644d6e0f0e662f23876e05fa460a73ec3257252a"},
 ]
 
 [[package]]
@@ -4657,18 +4644,15 @@ files = [
 
 [[package]]
 name = "widgetsnbextension"
-version = "3.6.5"
-description = "IPython HTML widgets for Jupyter"
+version = "4.0.8"
+description = "Jupyter interactive widgets for Jupyter Notebook"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.7"
 files = [
-    {file = "widgetsnbextension-3.6.5-py2.py3-none-any.whl", hash = "sha256:a5ae5e8ac0a85b9c527bee8ecb60b3e4b9ce499ed2900c9335b4d94e59f2e086"},
-    {file = "widgetsnbextension-3.6.5.tar.gz", hash = "sha256:601352aa4df7b15717fc57ab59fd9f2795003e53c477dca0d53171c4ee933b35"},
+    {file = "widgetsnbextension-4.0.8-py3-none-any.whl", hash = "sha256:2e37f0ce9da11651056280c7efe96f2db052fe8fc269508e3724f5cbd6c93018"},
+    {file = "widgetsnbextension-4.0.8.tar.gz", hash = "sha256:9ec291ba87c2dfad42c3d5b6f68713fa18be1acd7476569516b2431682315c17"},
 ]
-
-[package.dependencies]
-notebook = ">=4.4.1"
 
 [[package]]
 name = "wrapt"
@@ -4922,4 +4906,4 @@ zurich = ["zhinst"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "551ca4eee86717405861c1bc70e7e0013f5284cb6eb1b8cabe4ee52c12b8e525"
+content-hash = "2066a7070ae0195cfd6d0169b197736703662f5b51252b37835822aad44dc0eb"
