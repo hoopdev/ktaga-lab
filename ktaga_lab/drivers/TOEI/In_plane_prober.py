@@ -293,11 +293,11 @@ class AngleDriver(Instrument):
         name: str,
         com_port: str,
         baudrate: int = 9600,
-        acceleration: int = 0.1,
-        deceleration: int = 0.1,
-        velocity: int = 0.1,
+        acceleration: int = 0.167,
+        deceleration: int = 0.167,
+        velocity: int = 0.05,
         step_resolution: int = 20000,
-        angle_length_ratio: float = 22450 / 90,
+        angle_length_ratio: float = 22600 / 90,
         **kwargs,
     ) -> None:
 
