@@ -35,7 +35,7 @@ jupyterlab-templates = "^0.4.0"
 jupyterlab-theme-solarized-dark = "^2.1.0"
 
 [tool.poetry.extras]
-jupyterlab-tools = ["jupyterlab-vim","jupyterlab-vimrc"]
+jupyterlab-tools = ["jupyterlab-vim","jupyterlab-theme-solarized-dark"]
 zurich = ["zhinst"]
 nidaq = ["nidaqmx"]
 
