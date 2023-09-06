@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "ktaga_lab"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10,<3.12"
 qcodes = "^0.35.2"
 ipywidgets = "^8.1.0"
 matplotlib = "^3.6.1"
@@ -19,10 +19,8 @@ pandas = "^1.5.1"
 jupyterlab = "^4.0.5"
 tqdm = "^4.64.1"
 pyvisa = "^1.12.0"
-zhinst = "^22.8.4"
 plotly = "^5.10.0"
 jupyter-dash = "^0.4.2"
-jupyterlab-vim = "^4.0.2"
 python-lsp-server = {extras = ["all"], version = "^1.5.0"}
 black = "^22.10.0"
 isort = "^5.10.1"
@@ -31,11 +29,14 @@ holoviews = {extras = ["recommended"], version = "^1.15.1"}
 pyserial = "^3.5"
 nidaqmx = "^0.8.0"
 scikit-rf = "^0.26.0"
-jupyterlab-templates = "^0.4.0"
-jupyterlab-theme-solarized-dark = "^2.1.0"
+pythonnet = "^3.0.2"
+jupyterlab-vim = {version = "^4.0.2", optional = true}
+jupyterlab-templates = {version = "^0.4.0", optional = true}
+jupyterlab-theme-solarized-dark = {version = "^2.1.0", optional = true}
+zhinst = {version = "^22.8.4", optional = true}
 
 [tool.poetry.extras]
-jupyterlab-tools = ["jupyterlab-vim","jupyterlab-theme-solarized-dark"]
+jupyterlab-tools = ["jupyterlab-vim","jupyterlab-theme-solarized-dark", "jupyterlab-templates"]
 zurich = ["zhinst"]
 
 
