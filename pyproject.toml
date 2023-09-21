@@ -20,7 +20,7 @@ jupyterlab = "^4.0.5"
 tqdm = "^4.64.1"
 pyvisa = "^1.12.0"
 plotly = "^5.10.0"
-jupyter-dash = "^0.4.2"
+dash = "^2.13.0"
 python-lsp-server = {extras = ["all"], version = "^1.5.0"}
 black = "^22.10.0"
 isort = "^5.10.1"
