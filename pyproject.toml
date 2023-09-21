@@ -13,13 +13,19 @@ ipywidgets = "^8.1.0"
 matplotlib = "^3.6.1"
 numpy = "^1.23.4"
 scipy = "^1.9.3"
+sympy = "^1.11.1"
+h5py = "^3.7.0"
 xarray = "^2022.10.0"
 lmfit = "^1.0.3"
 pandas = "^1.5.1"
 jupyterlab = "^4.0.5"
+nbconvert = "^7.2.9"
+pandoc = "^2.3"
 tqdm = "^4.64.1"
 pyvisa = "^1.12.0"
+zhinst = "^22.8.4"
 plotly = "^5.10.0"
+dash = "^2.13.0"
 python-lsp-server = {extras = ["all"], version = "^1.5.0"}
 black = "^22.10.0"
 isort = "^5.10.1"
@@ -29,11 +35,9 @@ pyserial = "^3.5"
 nidaqmx = "^0.8.0"
 scikit-rf = "^0.26.0"
 pythonnet = "^3.0.2"
-zhinst = {version = "^22.8.4"}
 jupyterlab-vim = {version = "^4.0.2", optional = true}
 jupyterlab-templates = {version = "^0.4.0", optional = true}
 jupyterlab-theme-solarized-dark = {version = "^2.1.0", optional = true}
-dash = "^2.13.0"
 
 [tool.poetry.extras]
 jupyterlab-tools = ["jupyterlab-vim","jupyterlab-theme-solarized-dark", "jupyterlab-templates"]
