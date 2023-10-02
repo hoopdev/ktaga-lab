@@ -87,6 +87,14 @@ class KCubeStepperMotor(Instrument):
         time.sleep(0.1)
         return
 
+    def get_idn(self):
+        return {
+            "vendor": "Thorlabs",
+            "model": "KST201",
+            "serial": self.serial,
+            "firmware": None,
+        }
+
 class Position(Parameter):
     """
     Parameter class for the motor position
