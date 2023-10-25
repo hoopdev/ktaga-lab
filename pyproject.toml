@@ -23,7 +23,7 @@ nbconvert = "^7.2.9"
 pandoc = "^2.3"
 tqdm = "^4.64.1"
 pyvisa = "^1.12.0"
-zhinst = "^22.8.4"
+zhinst = "^23.6.2"
 plotly = "^5.10.0"
 kaleido = "0.2.1"
 dash = "^2.13.0"
@@ -36,6 +36,7 @@ pyserial = "^3.5"
 nidaqmx = "^0.8.0"
 scikit-rf = "^0.26.0"
 pythonnet = "^3.0.2"
+zhinst-qcodes = "^0.5.2"
 
 [tool.poetry.extras]
 
