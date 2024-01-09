@@ -8,7 +8,7 @@ packages = [{include = "ktaga_lab"}]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-qcodes = "^0.42.1"
+qcodes = "^0.43.0"
 ipywidgets = "^8.1.1"
 matplotlib = "^3.8.2"
 numpy = "^1.23.4"
