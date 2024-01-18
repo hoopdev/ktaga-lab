@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "ktaga_lab"}]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = "^3.11"
 qcodes = "^0.43.0"
 ipywidgets = "^8.1.1"
 matplotlib = "^3.8.2"
