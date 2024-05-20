@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ktaga-lab"
-version = "0.1.0"
+version = "0.1.3"
 description = "Drivers for the experimental setup and tools for data acquisition and analysis."
 authors = ["Kotaro Taga <taga.kotaro.62d@st.kyoto-u.ac.jp>"]
 license = "MIT"
