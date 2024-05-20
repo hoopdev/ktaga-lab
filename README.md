@@ -23,7 +23,7 @@ Docker can be used for only data analysis tasks. For experiment setup, you need 
 1. **Install Poetry:**
     - **Linux/macOS:**
       ```bash
-      curl -sSL https://install.python-poetry.org | python3 -
+      curl -sSL https://install.python-poetry.org | python -
       ```
     - **Windows (PowerShell):**
       ```powershell
@@ -77,10 +77,3 @@ pip install ktaga-lab
 ## Access the application
 
 Open your web browser and navigate to `http://localhost:8888` to access the JupyterLab interface.
-
-## Usage
-To use the tools and scripts provided in this repository, follow the instructions in the respective directories and files. Detailed documentation for each tool and script can be found within the repository.
-
-
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
