@@ -7,9 +7,9 @@ RUN pip install poetry
 
 WORKDIR /app
 
-COPY pyproject.toml poetry.lock ./
+COPY pyproject-env.toml ./pyproject.toml
 
-RUN poetry install 
-RUN poetry add jupyterlab_theme_solarized_dark
+RUN poetry install
+RUN poetry add ktaga-lab
 
 ENTRYPOINT ["poetry", "run", "jupyter", "lab", "--ip='0.0.0.0'", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
