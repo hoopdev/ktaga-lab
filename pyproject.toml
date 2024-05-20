@@ -2,9 +2,11 @@
 name = "ktaga-lab"
 version = "0.1.0"
 description = "Drivers for the experimental setup and tools for data acquisition and analysis."
-authors = ["ktaga"]
+authors = ["Kotaro Taga <taga.kotaro.62d@st.kyoto-u.ac.jp>"]
+license = "MIT"
 readme = "README.md"
 packages = [{include = "ktaga_lab"}]
+package-mode = true
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
