@@ -1920,7 +1920,7 @@ test = ["hatch", "ipykernel", "openapi-core (>=0.18.0,<0.19.0)", "openapi-spec-v
 name = "jupyterlab-theme-solarized-dark"
 version = "3.0.1"
 description = "Solarized dark theme for JupyterLab."
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "jupyterlab_theme_solarized_dark-3.0.1-py3-none-any.whl", hash = "sha256:f06c87632a59cb03d1c410b24d29acbb6ace379b739d5ce7776de58a99c558e8"},
@@ -1931,7 +1931,7 @@ files = [
 name = "jupyterlab-vim"
 version = "4.1.3"
 description = "Code cell vim bindings"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "jupyterlab_vim-4.1.3-py3-none-any.whl", hash = "sha256:a0c74c9697f42f42d030133f5b3aea092ef9c8dc7d8252afb91cdad951677131"},
@@ -5025,7 +5025,10 @@ files = [
 docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
 testing = ["big-O", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more-itertools", "pytest (>=6,!=8.1.*)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-ignore-flaky", "pytest-mypy", "pytest-ruff (>=0.2.1)"]
 
+[extras]
+full = ["jupyterlab-theme-solarized-dark", "jupyterlab-vim"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.13"
-content-hash = "7c500d61568534a1d97a8bd92c7afe68854b2d4b4d253086a3986a302327d954"
+content-hash = "27f4b5b7e2de3e40ea55ed048dcab2394be3761d815560d8f6f03990482f4dae"
