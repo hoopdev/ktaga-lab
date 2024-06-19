@@ -12,7 +12,6 @@ package-mode = true
 python = ">=3.11,<3.13"
 black = "^22.10.0"
 dash = "^2.14.2"
-h5py = "^3.7.0"
 holoviews = {extras = ["recommended"], version = "^1.18.1"}
 hvplot = "^0.9.2"
 ipywidgets = "^8.1.1"
