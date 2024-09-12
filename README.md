@@ -11,7 +11,7 @@ ktaga-lab contains programs for experiments in Onolab. This repository is design
 ## Prerequisites
 To run this project, you need to install either of the following dependencies:
 - pip
-- Poetry (recommended)
+- uv (recommended)
 - Docker (for analysis only)
 
 Docker can be used for only data analysis tasks. For experiment setup, you need to install the dependencies using pip or Poetry.
