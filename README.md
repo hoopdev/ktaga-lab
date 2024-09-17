@@ -20,32 +20,46 @@ Docker can be used for only data analysis tasks. For experiment setup, you need 
 
 ### Installation using Poetry
 
-1. **Install Poetry:**
-    - **Linux/macOS:**
-      ```bash
-      curl -sSL https://install.python-poetry.org | python -
-      ```
+1. **Install uv:**
     - **Windows (PowerShell):**
-      ```powershell
-      (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
-      ```
+    ```bash
+    winget install astral-sh.uv
+    ```
+
+    - **Linux:**
+    ```bash
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ```
+
+    - **macOS:**
+    ```bash
+    brew install uv
+    ```
+
+
 
 2. **Setup environment**
 
-    Please make a pyproject.toml file in your directory for experiment or analysis. You can use a template file `pyproject-env.toml` provided in the repository.
-    After creating the file, run the following command to install the dependencies:
     ```bash
-    poetry install
+    uv init
     ```
+    This command will create a `pyproject.toml` file in the current directory.
+
+    ```bash
+    uv venv
+    ```
+    This command will create a virtual environment in the current directory.
+
 
 3. **Install ktaga-lab:**
     ```bash
-    poetry add ktaga-lab
+    uv add ktaga-lab
+    uv sync -U
     ```
 
 4. **Run the application:**
     ```bash
-    poetry run jupyter lab
+    uv run jupyter lab
     ```
 
 ### Installation using pip
