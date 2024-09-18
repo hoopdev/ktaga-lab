@@ -1,12 +1,11 @@
 [project]
 name = "ktaga-lab"
-version = "0.1.6"
+version = "0.1.7"
 description = "Drivers and dependencies for the experimental setup and tools for data acquisition and analysis."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "jupyterlab>=4.2.5",
-    "numpy>=2.1.1",
     "dash>=2.18.0",
     "hvplot>=0.10.0",
     "ipywidgets>=8.1.5",
@@ -17,7 +16,6 @@ dependencies = [
     "nidaqmx>=1.0.1",
     "pandas>=2.2.2",
     "pandoc>=2.4",
-    "plotly>=5.24.0",
     "pyserial>=3.5",
     "pythonnet>=3.0.3",
     "pyvisa>=1.14.1",
@@ -31,7 +29,9 @@ dependencies = [
     "tqdm>=4.66.5",
     "holoviews[recommended]>=1.19.1",
     "ruff>=0.6.4",
-    "jupyter-ai>=0.2.0",
+    "langchain>=0.0.27",
+    "langchain-openai>=0.1.25",
+    "jupyter-ai>=2.23.0",
 ]
 
 [project.optional-dependencies]
