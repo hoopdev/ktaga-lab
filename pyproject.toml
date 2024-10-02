@@ -8,36 +8,29 @@ dependencies = [
     "jupyterlab>=4.2.5",
     "dash>=2.18.0",
     "hvplot>=0.10.0",
-    "ipywidgets>=8.1.5",
     "kaleido==0.2",
     "lmfit>=1.3.2",
-    "matplotlib>=3.9.2",
     "nbconvert>=7.16.4",
     "nidaqmx>=1.0.1",
-    "pandas>=2.2.2",
     "pandoc>=2.4",
     "pyserial>=3.5",
     "pythonnet>=3.0.3",
-    "pyvisa>=1.14.1",
     "qcodes>=0.48.0",
     "scikit-rf>=1.3.0",
-    "scipy>=1.14.1",
     "sympy>=1.13.2",
-    "xarray>=2024.9.0",
-    "zhinst>=24.7.2",
-    "zhinst-qcodes>=0.5.3",
-    "tqdm>=4.66.5",
     "holoviews[recommended]>=1.19.1",
     "ruff>=0.6.4",
-    "langchain>=0.0.27",
-    "langchain-openai>=0.1.25",
-    "jupyter-ai>=2.23.0",
+    "jupyter-ai>=2.24.0",
 ]
 
 [project.optional-dependencies]
 kt = [
     "jupyterlab-theme-solarized-dark>=3.0.1",
     "jupyterlab-vim>=4.1.3",
+]
+zurich = [
+    "zhinst-qcodes>=0.5.4",
+    "zhinst>=24.7.3",
 ]
 
 [tool.uv]
