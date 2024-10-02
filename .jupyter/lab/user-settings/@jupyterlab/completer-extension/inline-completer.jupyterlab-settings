@@ -1,0 +1,29 @@
+{
+    "editorResizeDelay": 1000,
+    "maxLines": 0,
+    "minLines": 0,
+    "providers": {
+        "@jupyterlab/inline-completer:history": {
+            "enabled": false,
+            "timeout": 5000,
+            "debouncerDelay": 0,
+            "maxSuggestions": 100
+        },
+        "@jupyterlab/jupyter-ai": {
+            "enabled": true,
+            "timeout": 5000,
+            "debouncerDelay": 250,
+            "triggerKind": "any",
+            "maxPrefix": 10000,
+            "maxSuffix": 10000,
+            "disabledLanguages": [
+                "ipythongfm"
+            ],
+            "streaming": "always"
+        }
+    },
+    "reserveSpaceForLongest": false,
+    "showShortcuts": true,
+    "showWidget": "always",
+    "streamingAnimation": "uncover"
+}

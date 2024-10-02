@@ -1,0 +1,10 @@
+{
+    // Decks
+    // @deathbeds/jupyterlab-deck:plugin
+    // Configure Deck Settings
+    // *********************************
+
+    // Activate Deck
+    // Whether presentation mode is currently active.
+    "active": false
+}

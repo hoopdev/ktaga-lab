@@ -1,0 +1,61 @@
+{
+    // Notebook Vim
+    // @axlair/jupyterlab_vim:plugin
+    // Notebook Vim Settings
+    // *****************************
+
+    // Notebook shortcut key bindings for switching from vim Normal mode to Jupyter Command mode
+    // [missing schema description]
+    "cmdModeKeys": {
+        "escToCmdMode": false,
+        "shiftEscOverrideBrowser": true
+    },
+
+    // Enabled
+    // Enable/disable vim extension (may require a page refresh)
+    "enabled": true,
+
+    // Enabled in Text Editor
+    // Enable/disable vim in text editors (may require a page refresh)
+    "enabledInEditors": true,
+
+    // Extra Vim Keybindings
+    // [missing schema description]
+    "extraKeybindings": [
+        {
+            "context": "normal",
+            "mapfn": "noremap",
+            "enabled": true,
+            "command": "H",
+            "keys": "^"
+        },
+        {
+            "context": "normal",
+            "mapfn": "noremap",
+            "enabled": true,
+            "command": "J",
+            "keys": "}"
+        },
+        {
+            "context": "normal",
+            "mapfn": "noremap",
+            "enabled": true,
+            "command": "K",
+            "keys": "{"
+        },
+        {
+            "context": "normal",
+            "mapfn": "noremap",
+            "enabled": true,
+            "command": "L",
+            "keys": "$"
+        },
+        {
+            "context": "normal",
+            "mapfn": "noremap",
+            "enabled": true,
+            "command": "m",
+            "keys": "%"
+        }
+    ]
+}
