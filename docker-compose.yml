@@ -1,4 +1,3 @@
-version: "3.12"
 services:
   jupyter:
     build:
@@ -10,12 +9,11 @@ services:
       --ip=0.0.0.0
       --port=8888
       --no-browser
-      --NotebookApp.token=''
-      --notebook-dir=/onedrive_dir/Lab/Experiment
+      --notebook-dir=/notebook_dir
     expose:
       - "8888"
     ports:
       - "127.0.0.1:8888:8888"
     volumes:
       - .jupyter:/root/.jupyter
-      - ${OneDrive}:/onedrive_dir
+      - ${NotebookDir}:/notebook_dir

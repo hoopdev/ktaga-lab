@@ -18,7 +18,7 @@ Docker can be used for only data analysis tasks. For experiment setup, you need 
 
 ## Setup
 
-### Installation using Poetry
+### Installation using uv
 
 1. **Install uv:**
     - **Windows (PowerShell):**
@@ -69,23 +69,22 @@ You can also install the package using pip. Run the following command to install
 pip install ktaga-lab
 ```
 
-### Installation using Docker
+### Deploy using Docker
 
-1. **Clone the repository:**
+1. Copy .env.example to .env and set the environment variables.
+You can set the following environment variables:
+
+- NotebookDir: The directory where the jupyter notebooks are stored. By default, it is set to OneDrive directory, which is shared between the host and the container.
+
+2. **Clone the repository:**
     ```bash
     git clone https://github.com/hoopdev/ktaga-lab.git
     cd ktaga-lab
     ```
 
-2. **Build the Docker image:**
-    Use the `Dockerfile` provided in the repository:
+2. **Run the Docker compose:**
     ```bash
-    docker build -t ktaga-lab .
-    ```
-
-3. **Run the Docker container:**
-    ```bash
-    docker run --rm -p 8888:8888 ktaga-lab
+    docker compose up
     ```
 
 ## Access the application

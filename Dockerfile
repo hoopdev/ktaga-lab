@@ -6,6 +6,3 @@ RUN apt-get update
 WORKDIR /app
 RUN uv init
 RUN uv add ktaga-lab --extra kt
-
-EXPOSE 8888
-ENTRYPOINT ["uv", "run", "jupyter", "lab", "--ip='0.0.0.0'", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
