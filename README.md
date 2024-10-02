@@ -1,12 +1,8 @@
 # ktaga-lab
 
 ## Overview
-ktaga-lab contains programs for experiments in Onolab. This repository is designed to facilitate various experimental setups and data analysis tasks.
-
-## Features
-- Experiment setup scripts
-- Data analysis tools
-- Reproducible research environment
+ktaga-lab contains programs and dependencies for experiments in Onolab.
+This repository is designed to facilitate various experimental setups and data analysis tasks.
 
 ## Prerequisites
 To run this project, you need to install either of the following dependencies:
@@ -14,7 +10,7 @@ To run this project, you need to install either of the following dependencies:
 - uv (recommended)
 - Docker (for analysis only)
 
-Docker can be used for only data analysis tasks. For experiment setup, you need to install the dependencies using pip or Poetry.
+Docker can be used for only data analysis tasks. For experiment setup, you need to install the dependencies using pip or uv.
 
 ## Setup
 
