@@ -21,7 +21,6 @@ dependencies = [
     "holoviews[recommended]>=1.19.1",
     "ruff>=0.6.4",
     "jupyter-ai>=2.24.0",
-    "ktaga-lab[kt]",
 ]
 
 [project.optional-dependencies]
@@ -38,7 +37,6 @@ zurich = [
 package = true
 
 [tool.uv.sources]
-ktaga-lab = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]
