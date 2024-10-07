@@ -1,6 +1,6 @@
 [project]
 name = "ktaga-lab"
-version = "0.1.8"
+version = "0.1.9"
 description = "Drivers and dependencies for the experimental setup and tools for data acquisition and analysis."
 readme = "README.md"
 requires-python = ">=3.12"
