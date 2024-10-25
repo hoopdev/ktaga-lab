@@ -1,6 +1,6 @@
 [project]
 name = "ktaga-lab"
-version = "0.1.9"
+version = "0.1.12"
 description = "Drivers and dependencies for the experimental setup and tools for data acquisition and analysis."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -8,7 +8,6 @@ dependencies = [
     "jupyterlab>=4.2.5",
     "dash>=2.18.0",
     "hvplot>=0.10.0",
-    "kaleido==0.2",
     "lmfit>=1.3.2",
     "nbconvert>=7.16.4",
     "nidaqmx>=1.0.1",
@@ -21,6 +20,7 @@ dependencies = [
     "holoviews[recommended]>=1.19.1",
     "ruff>=0.6.4",
     "jupyter-ai>=2.24.0",
+    "kaleido==0.2.1",
 ]
 
 [project.optional-dependencies]
