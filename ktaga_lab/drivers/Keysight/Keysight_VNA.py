@@ -1261,3 +1261,16 @@ class N5224A(PNABaseN52xx):
             nports=2,
             **kwargs,
         )
+
+class N5230A(PNABaseN52xx):
+    def __init__(self, name: str, address: str, **kwargs: Any):
+        super().__init__(
+            name,
+            address,
+            min_freq=300e3,
+            max_freq=20.0e9,
+            min_power=-30,
+            max_power=13,  # 13 dBm up to 35 GHz
+            nports=4,
+            **kwargs,
+        )
