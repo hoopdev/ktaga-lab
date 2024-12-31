@@ -2,7 +2,6 @@ import warnings
 from typing import TYPE_CHECKING, Any
 
 import numpy as np
-
 import qcodes.validators as vals
 from qcodes.instrument import VisaInstrument, VisaInstrumentKWArgs
 from qcodes.parameters import Parameter, create_on_off_val_mapping
@@ -12,8 +11,7 @@ if TYPE_CHECKING:
 
 
 class AgilentE8251A(VisaInstrument):
-    """
-    This is the QCoDeS driver for the Agilent E8251A signal generator.
+    """This is the QCoDeS driver for the Agilent E8251A signal generator.
     This driver will most likely work for multiple Agilent sources.
     This driver does not contain all commands available for the E8251A but
     only the ones most commonly used.
@@ -34,63 +32,16 @@ class AgilentE8251A(VisaInstrument):
             warnings.warn(
                 "step_attenuator argument to E8251A is deprecated "
                 "and has no effect. It will be removed in the "
-                "future."
+                "future.",
             )
 
-        # Query installed options
-        self._options = self.ask_raw("DIAG:CPU:INFO:OPT:DET?")
-
-        # Determine installed frequency option
-        frequency_option = None
-        for f_option in ["513", "520", "521", "532", "540", "550", "567"]:
-            if f_option in self._options:
-                frequency_option = f_option
-        if frequency_option is None:
-            raise RuntimeError("Could not determine the frequency option")
-
-        # convert installed frequency option to frequency ranges, based on:
-        # https://www.keysight.com/us/en/assets/7018-01233/configuration-guides
-        # /5989-1325.pdf
-        # the frequency range here is the max range and not the specified
-        # (calibrated) one
-        f_options_dict = {
-            "513": (100e3, 13e9),
-            "520": (100e3, 20e9),
-            "521": (10e6, 20e9),
-            "532": (100e3, 31.8e9),
-            "540": (100e3, 40e9),
-            "550": (100e3, 50e9),
-            "567": (100e3, 70e9),
-        }
-
         # assign min and max frequencies
-        self._min_freq: float
-        self._max_freq: float
-        self._min_freq, self._max_freq = f_options_dict[frequency_option]
-
-        # Based on installed frequency option and presence/absence of step
-        # attenuator (option '1E1') determine power range based on:
-        # https://www.keysight.com/us/en/assets/7018-01211/data-sheets
-        # /5989-0698.pdf
+        self._min_freq: float = 250e3
+        self._max_freq: float = 20e9
 
         # assign min and max powers
-        self._min_power: float
-        self._max_power: float
-
-        if "1E1" in self._options:
-            if frequency_option in ["513", "520", "521", "532", "540"]:
-                self._min_power = -135
-                self._max_power = 10
-            else:
-                self._min_power = -110
-                self._max_power = 5
-        elif frequency_option in ["513", "520", "521", "532", "540"]:
-            self._min_power = -20
-            self._max_power = 10
-        else:
-            # default minimal power is -20 dBm
-            self._min_power = -20
-            self._max_power = 5
+        self._min_power: float = -135
+        self._max_power: float = 25
 
         self.frequency: Parameter = self.add_parameter(
             name="frequency",
