@@ -19,8 +19,8 @@ dependencies = [
     "sympy>=1.13.2",
     "holoviews[recommended]>=1.19.1",
     "ruff>=0.6.4",
-    "jupyter-ai>=2.24.0",
     "kaleido==0.2.1",
+    "idtpy",
 ]
 
 [project.optional-dependencies]
@@ -37,6 +37,7 @@ zurich = [
 package = true
 
 [tool.uv.sources]
+idtpy = { git = "https://github.com/hoopdev/idtpy" }
 
 [build-system]
 requires = ["hatchling"]
